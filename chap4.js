@@ -20,3 +20,32 @@ var sum = function(numbers) {
 }
 
 // ex2 - Reversing an array
+
+// ex3 - A list
+var createObject = function(obj, value) {
+  if(obj.rest === undefined) {
+    obj.value = value;
+    obj.rest = null;
+  } else if(obj.rest === null) {
+    obj.rest = {
+      value: value,
+      rest: null
+    }
+  } else {
+    obj.rest = createObject(obj.rest, value);
+  }
+
+  return obj
+}
+
+var arrayToList = function(array) {
+  var newObj = {};
+  for(i=0; i < array.length; i++) {
+    newObj = createObject(newObj, array[i]);
+  }
+
+  return newObj;
+}
+
+var listToArray = function(list) {
+}
