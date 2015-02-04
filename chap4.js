@@ -79,3 +79,15 @@ var listToArray = function(list) {
   var newList = list;
   return traverseList(newList, newArray);
 }
+
+// prepend to list
+var prepend = function(newValue, list) {
+  return {
+    value: newValue,
+    rest: list
+  };
+}
+
+// TODO: nth function
+
+// ex 4 - deep comparison
