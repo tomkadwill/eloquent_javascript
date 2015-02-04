@@ -20,6 +20,20 @@ var sum = function(numbers) {
 }
 
 // ex2 - Reversing an array
+var reverseArray = function(array) {
+  newArray = [];
+  arrayCopy = array
+  length = array.length;
+  for(i=0; i < length; i++) {
+    newArray.unshift(array[0]);
+    arrayCopy.shift();
+  }
+  return newArray;
+}
+
+var reverseArrayInPlace = function(array) {
+  array = reverseArray(array);
+}
 
 // ex3 - A list
 var createObject = function(obj, value) {
