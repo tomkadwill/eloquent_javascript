@@ -91,3 +91,27 @@ var prepend = function(newValue, list) {
 // TODO: nth function
 
 // ex 4 - deep comparison
+var compareObject = function(obj1, obj2) {
+  for (var property in obj1) {
+    if(typeof(obj1[property]) == 'object') {
+      if(!compareObject(obj1[property], obj2[property])) {
+        return false;
+      }
+    } else {
+      if(obj1[property] !== obj2[property]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+var deepEqual = function(obj1, obj2) {
+  if(obj1 === obj2) {
+    return true;
+  } else {
+    return compareObject(obj1, obj2) ? true : false;
+  }
+}
+
