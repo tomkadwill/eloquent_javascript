@@ -36,6 +36,7 @@ var reverseArrayInPlace = function(array) {
 }
 
 // ex3 - A list
+// array to list
 var createObject = function(obj, value) {
   if(obj.rest === undefined) {
     obj.value = value;
@@ -61,5 +62,20 @@ var arrayToList = function(array) {
   return newObj;
 }
 
+// list to array
+var traverseList = function(list, newArray) {
+  if(list.rest === null) {
+    newArray.push(list.value);
+  } else {
+    newArray.push(list.value);
+    newArray = traverseList(list.rest, newArray);
+  }
+
+  return newArray;
+}
+
 var listToArray = function(list) {
+  var newArray = [];
+  var newList = list;
+  return traverseList(newList, newArray);
 }
