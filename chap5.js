@@ -43,7 +43,6 @@ ancestry.forEach(function(person) {
 console.log(map([], average, byName));
 
 //ex3 - Historical life expectancy
-// TODO - refactor
 function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
@@ -93,3 +92,26 @@ var centuryObject = agesByCentury(centuryAges());
 console.log(
   averageAgesByCentury(centuryObject)
 );
+
+//ex4 - Every and then some
+// TODO - refactor
+function anyNaN(element, index, array, test) {
+  return isNaN(element);
+}
+
+function every(array, test) {
+  return array.every(anyNaN, test);
+}
+
+function some(array, test) {
+  return array.some(anyNaN, test);
+}
+
+console.log(every([NaN, NaN, NaN], isNaN));
+// → true
+console.log(every([NaN, NaN, 4], isNaN));
+// → false
+console.log(some([NaN, 3, 4], isNaN));
+// → true
+console.log(some([2, 3, 4], isNaN));
+// → false
