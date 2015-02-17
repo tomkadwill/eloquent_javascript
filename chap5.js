@@ -43,3 +43,53 @@ ancestry.forEach(function(person) {
 console.log(map([], average, byName));
 
 //ex3 - Historical life expectancy
+// TODO - refactor
+function average(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus) / array.length;
+}
+
+function map(array, transform) {
+  return transform(array);
+}
+
+function centuryAges() {
+  ages = [];
+  ancestry.forEach(function(person) {
+    century = Math.ceil(person.died / 100);
+    var life = person.died - person.born;
+    ages.push([century, life]);
+  });
+  return ages;
+}
+
+function ageAverages(ages) {
+  listOfAges = [];
+  ages.forEach(function(person) {
+    listOfAges.push(person[1]);
+  });
+  return listOfAges;
+}
+
+function agesByCentury(array) {
+  centuryObj = {};
+  array.forEach(function(person) {
+    if (centuryObj[person[0]] == null) {
+    	centuryObj[person[0]] = [];
+    }
+    centuryObj[person[0]].push(person[1]);
+  });
+  return centuryObj;
+}
+
+function averageAgesByCentury(century) {
+  for(century in centuryObj) {
+    centuryObj[century] = map(centuryObj[century], average);
+  }
+  return centuryObj;
+}
+
+var centuryObject = agesByCentury(centuryAges());
+console.log(
+  averageAgesByCentury(centuryObject)
+);
