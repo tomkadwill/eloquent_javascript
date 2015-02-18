@@ -22,11 +22,11 @@ function average(array) {
 }
 
 function averageAges(array, nameObj) {
-  for(name in nameObj) {
+  for(var name in nameObj) {
     var person = nameObj[name];
     var personBorn = person.born;
     var mother = nameObj[person.mother];
-    if(mother != null) {
+    if(mother !== null) {
       var motherBorn = mother.born;
       var difference = personBorn - motherBorn;
       array.push(difference);
@@ -73,7 +73,7 @@ function ageAverages(ages) {
 function agesByCentury(array) {
   centuryObj = {};
   array.forEach(function(person) {
-    if (centuryObj[person[0]] == null) {
+    if (centuryObj[person[0]] === null) {
     	centuryObj[person[0]] = [];
     }
     centuryObj[person[0]].push(person[1]);
@@ -94,18 +94,23 @@ console.log(
 );
 
 //ex4 - Every and then some
-// TODO - refactor
-function anyNaN(element, index, array, test) {
-  return isNaN(element);
-}
+var every = function(array, operation) {
+  var nan = false;
+  array.forEach(function(element) {
+    if(!operation(element))
+      nan = true;
+  });
+  return (nan === true ? false : true);
+};
 
-function every(array, test) {
-  return array.every(anyNaN, test);
-}
-
-function some(array, test) {
-  return array.some(anyNaN, test);
-}
+var some = function(array, operation) {
+  var nan = false;
+  array.forEach(function(element) {
+    if(operation(element))
+      nan = true;
+  });
+  return (nan === true ? true : false);
+};
 
 console.log(every([NaN, NaN, NaN], isNaN));
 // → true
