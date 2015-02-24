@@ -32,7 +32,8 @@ var reverseArray = function(array) {
 }
 
 var reverseArrayInPlace = function(array) {
-  array = reverseArray(array);
+	var answer = reverseArray(array);  
+	array.splice(0, array.length, answer);
 }
 
 // ex3 - A list
